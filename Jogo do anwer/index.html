@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Reino de Eldoria</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .fundo-roxo {
+            background-color: hsl(275, 100%, 50%);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>O Reino de Eldoria</h1>
+    </header>
+    <main>
+        <div class="passo ativo" id="passo-0">
+            <p class="fundo-roxo">Bem-vindo ao Reino de Eldoria!</p>
+            <p class="fundo-roxo">Antes de começar sua jornada, por favor, escolha seu nome, gênero e classe.</p>
+            <div class="form-group">
+                <label for="nome"><span class="fundo-roxo">Nome:</span></label>
+                <input type="text" id="nome" name="nome">
+            </div>
+            <div class="form-group">
+                <label for="genero"><span class="fundo-roxo">Gênero:</span></label>
+                <select id="genero" name="genero" onchange="atualizarClasses()">
+                    <option value="masculino">Masculino</option>
+                    <option value="feminino">Feminino</option>
+                    <option value="outro">Outro</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="classe"><span class="fundo-roxo">Classe:</span></label>
+                <select id="classe" name="classe">
+               
+                </select>
+            </div>
+            <button class="btn-proximo" data-proximo="1" onclick="iniciarJogo()">Iniciar Jogo</button>
+        </div>
+        
+        <div class="passo" id="passo-1">
+            <p id="introducao"></p>
+            <p class="fundo-roxo">Um ataque é iminente, os criminosos já seguiram há tempo. O que fazer?</p>
+            <button class="btn-proximo" data-proximo="2">Fugir dessa situação</button>
+            <button class="btn-proximo" data-proximo="3">Proteger a carroça</button>
+            <button class="btn-proximo" data-proximo="4">Esperar</button>
+        </div>
+        <div class="passo" id="passo-2">
+            <p class="fundo-roxo"> É racional, porém como ser humano isso é desumano. Você foge com dificuldade, mas está ileso e agora se encontra dentro do reino em uma estalagem chamada Bafo do Dragão.</p>
+            <button class="btn-proximo" data-proximo="9">Continuar</button>
+        </div>
+        <div class="passo" id="passo-3">
+            <p class="fundo-roxo">De fato não foi racional, é um sacrifício muito em vão de certo modo. Você sai extremamente ferido, porém seu sacrifício é recompensado. Já a princesa dentro da carruagem sentiu uma grande afeição pela sua conquista. Você se encontra no castelo em um quarto de luxo e seu nome se tornou certamente popular na cidade.</p>
+            <button class="btn-proximo" data-proximo="14">Continuar</button>
+        </div>
+        <div class="passo" id="passo-4">
+            <p class="fundo-roxo">A carroça de certa forma levou muito mais dano e a nobreza foi relativamente ferida, todos os guardas morrem, mas as pessoas dentro da carruagem sobrevivem. Você derrota uma parte dos inimigos e sai ferido.</p>
+            <button class="btn-proximo" data-proximo="5">Continuar</button>
+        </div>
+        <div class="passo" id="passo-5">
+            <p class="fundo-roxo">Você conquistou um pouco de respeito entre os protegidos que sobraram, porém a Princesa de Stonewall foi gravemente ferida e sequestrada.</p>
+            <button class="btn-proximo" data-proximo="6">Perseguir os bandidos</button>
+            <button class="btn-proximo" data-proximo="7">Se esconder</button>
+            <button class="btn-proximo" data-proximo="8">Aliar-se aos bandidos</button>
+        </div>
+        <div class="passo" id="passo-6">
+            <p class="fundo-roxo">Você optou por perseguir os bandidos para resgatar a Princesa de Stonewall. Após uma intensa perseguição, marcada por momentos de adrenalina e estratégias engenhosas, finalmente conseguiu localizar o esconderijo dos bandidos. No instante em que invadiu o covil dos bandidos, ativaram um sistema de segurança altamente sofisticado, prendendo-o em uma armadilha. Você foi capturado e aprisionado, tirando seu ar de esperança. A cela era escura e úmida, um local digno de um pesadelo. Algemados, você e a princesa foram amarrados um ao outro, forçados a olhar em direções opostas. A ironia da situação era cruel.</p>
+        </div>
+        <div class="passo" id="passo-7">
+            <p class="fundo-roxo">Ao se esconder, você estará abandonando a princesa sequestrada e os inocentes na carruagem. Todos viram isso e foi extremamente vergonhoso, porém você saiu inteiro e intacto. Você ganhou o título de "Rato Engenhoso" entre a população.</p>
+        </div>
+        <div class="passo" id="passo-8">
+            <p class="fundo-roxo">Ao optar por aliar-se aos bandidos, você encontrou um caminho mais fácil para alcançar seus objetivos. Com a confiança e o apoio dos criminosos, sua influência e poder cresceram rapidamente por você já ser forte. A notícia de sua aliança com os bandidos se espalhou rapidamente pela cidade. A população, aterrorizada pelos crimes cometidos pela organização, passou a vê-lo como um traidor e você virou inimigo nacional. Você é um procurado na maioria das regiões.</p>
+        </div>
+        <div class="passo" id="passo-9">
+            <p class="fundo-roxo">Você acabou de chegar à estalagem Bafo do Dragão, exausto após uma fuga desesperada. A adrenalina ainda corre em suas veias, mas a segurança do local te proporciona um momento de alívio. Com o coração ainda acelerado, você precisa tomar algumas decisões importantes. O que fazer agora que está a salvo, pelo menos por enquanto?</p>
+            <button class="btn-proximo" data-proximo="10">Informar as autoridades: Procurar a guarda real ou um oficial de Stonewall para relatar o ataque</button>
+            <button class="btn-proximo" data-proximo="11">Descobrir mais sobre os perseguidores: Tentar obter informações sobre os criminosos na estalagem</button>
+            <button class="btn-proximo" data-proximo="12">Explorar a cidade: Decidir explorar a cidade de Stonewall</button>
+            <button class="btn-proximo" data-proximo="13">Se recuperar: Aproveitar a estadia na estalagem para descansar</button>
+        </div>
+        <div class="passo" id="passo-10">
+            <p class="fundo-roxo">Você decide procurar a guarda real ou um oficial de Stonewall para relatar o ataque. Eles agradecem a informação e prometem investigar o ocorrido.</p>
+        </div>
+        <div class="passo" id="passo-11">
+            <p class="fundo-roxo">Você tenta obter informações sobre os criminosos na estalagem. Alguns dos frequentadores mencionam ter visto figuras suspeitas recentemente, mas ninguém sabe ao certo quem são.</p>
+        </div>
+        <div class="passo" id="passo-12">
+            <p class="fundo-roxo">Você decide explorar a cidade de Stonewall. As ruas estão cheias de vida, com comerciantes vendendo suas mercadorias e artistas de rua entretendo os passantes.</p>
+        </div>
+        <div class="passo" id="passo-13">
+            <p class="fundo-roxo">Você aproveita a estadia na estalagem para descansar. Após uma boa noite de sono, você se sente revigorado e pronto para enfrentar novos desafios.</p>
+        </div>
+        <div class="passo" id="passo-14">
+        <p class="fundo-roxo">Você acorda no quarto de luxo do castelo, ainda sentindo as dores das feridas, mas com a mente clara e determinada. A princesa, se apresenta como Aria, e entra no quarto com um sorriso agradecido.</p>
+        <p class="fundo-roxo">“Você salvou minha vida e a entrega importante,” ela diz, dando uma risada com as mãos na boca. “Sou eu.”</p>
+        <p class="fundo-roxo">Após se aprontar, ela o leva para um lugar mais restrito para uma conversa particular.</p>
+        <p class="fundo-roxo">“Eldoria está próxima de um perigo,” ela começa. “Sinto muito se você não teve um descanso melhor, mas houve um relato de batedores sobre uma movimentação na floresta próxima às montanhas. Preciso de alguém corajoso e confiável para liderar uma missão e investigar os ocorridos no local. Você aceitaria essa missão?”</p>
+        <button class="btn-proximo" data-proximo="15">Por Eldoria, eu aceitaria os riscos.</button>
+        <button class="btn-proximo" data-proximo="16">Infelizmente só estou de viagem, mas obrigado pela hospedagem.</button>
+        <button class="btn-proximo" data-proximo="17">Talvez tenha alguém com mais méritos para essa missão, senhorita.</button>
+    </div>
+    <div class="passo" id="passo-15">
+        <p class="fundo-roxo">Você aceitou a missão e se prepara para partir em direção à floresta. A jornada será longa e perigosa, mas você está determinado a proteger Eldoria.</p>
+        <button class="btn-proximo" data-proximo="18">Continuar</button>
+    </div>
+    <div class="passo" id="passo-16">
+        <p class="fundo-roxo">Você agradece a hospitalidade e decide continuar sua viagem. Embora tenha ajudado a proteger a carroça, você sente que sua jornada em Stonewall chegou ao fim.</p>
+        <button class="btn-proximo" data-proximo="19">Continuar</button>
+    </div>
+    <div class="passo" id="passo-17">
+        <p class="fundo-roxo">Você sugere que talvez haja alguém mais qualificado para a missão. A princesa Aria agradece sua honestidade e promete encontrar outra pessoa para liderar a investigação.</p>
+        <button class="btn-proximo" data-proximo="20">Continuar</button>
+    
+    </div>
+<div class="passo" id="passo-18">
+    
+    <p class="fundo-roxo">Lembrando de sua classe inicial escolhida poderá afetar o seu futuro<br>
+        A classe escolhida terá obtido os seguintes itens<br><br>
+        <strong>Guerreiro</strong><br>
+        Espada de Ferro (Arma)<br>
+        Armadura de couro (proteção)<br><br>
+        <strong>Mago</strong><br>
+        Varinha de Carvalho (Arma)<br>
+        Robe de Aprendiz (Cosmético)<br>
+        Tomo mágico (Arma)<br><br>
+        <strong>Clérigo</strong><br>
+        Maça de correntes (Arma)<br>
+        Escudo de Madeira (proteção)<br>
+        Cota de Malhas (proteção)<br><br>
+        <strong>Arqueiro</strong><br>
+        Arco Curto (Arma)<br>
+        Botas de Couro (Cosmético)<br>
+        Robe com capuz (Cosmético)<br><br>
+        (Lembrando que cada classe tem sua funcionalidade e itens exclusivos que outros não terão)</p>
+        
+<button class="btn-proximo" data-proximo="21">Continuar</button>
+</div>
+<div class="passo" id="passo-19">
+    <p class="fundo-roxo">Lembrando de sua classe inicial escolhida poderá afetar o seu futuro<br>
+        A classe escolhida terá obtido os seguintes itens<br><br>
+        <strong>Guerreiro</strong><br>
+        Espada de Ferro (Arma)<br>
+        Armadura de couro (proteção)<br><br>
+        <strong>Mago</strong><br>
+        Varinha de Carvalho (Arma)<br>
+        Robe de Aprendiz (Cosmético)<br>
+        Tomo mágico (Arma)<br><br>
+        <strong>Clérigo</strong><br>
+        Maça de correntes (Arma)<br>
+        Escudo de Madeira (proteção)<br>
+        Cota de Malhas (proteção)<br><br>
+        <strong>Arqueiro</strong><br>
+        Arco Curto (Arma)<br>
+        Botas de Couro (Cosmético)<br>
+        Robe com capuz (Cosmético)<br><br>
+        (Lembrando que cada classe tem sua funcionalidade e itens exclusivos que outros não terão)</p>
+        
+        <button class="btn-proximo" data-proximo="22">Continuar</button>
+
+        </div>
+        
+        <div class="passo" id="passo-20">
+            <p class="fundo-roxo">Saindo gentilmente do castelo e acabando em uma pequena praça, você não tem interesse sobre o reino de Stonewall, mas certos rumores o tornam intrigante.</p>
+            <button class="btn-proximo" data-proximo="23">Ignorar</button>
+            <button class="btn-proximo" data-proximo="24">Investigar</button>
+            <button class="btn-proximo" data-proximo="25">Descansar</button>
+        </div>
+         <div class="passo" id="passo-23">
+                <p class="fundo-roxo">O que de fato você busca?</p>
+                <button class="btn-proximo" data-proximo="26">Liberdade</button>
+                <button class="btn-proximo" data-proximo="27">Aventura</button>
+                <button class="btn-proximo" data-proximo="28">Poder</button>
+                <button class="btn-proximo" data-proximo="29">Riqueza</button>
+                <button class="btn-proximo" data-proximo="30">Conhecimento</button>
+         </div>
+
+                <div class="passo" id="passo-26">
+                    <p class="fundo-roxo">A busca pela liberdade está cegamente ligada ao desejo de autonomia, de poder escolher o próprio caminho e de se livrar de restrições.</p>
+                    <p class="fundo-roxo">A liberdade é algo precioso em todo lugar localizado no mundo, as tomadas de decisões são importantes, porém o azar e escolhas ruins estão presentes.</p>
+                    <p class="fundo-roxo">Pela busca de liberdade você saìu do reino de Stonewall tranquilamente, mas ao passar pela estrada próxima a floresta, você foi pego a um fogo cruzado entre os soldados e mercenários, já que a princesa foi sequestrada e esse era o pequeno grupo de bandidos envolvidos.</p>
+                    <p class="fundo-roxo">Você morreu em sua liberdade.</p>
+                </div>
+                
+                <div class="passo" id="passo-27">
+                    <p class="fundo-roxo">A aventura é a busca por experiências novas e emocionantes, por sair da zona de conforto e explorar o desconhecido.</p>
+                    <p class="fundo-roxo">Viver novas emoções é extremamente importante, mas saber diferenciar entre amigo e inimigo é o ideal nesse mundo cruel. Você andou em masmorras, caçou animais e até se uniu ao grupo de mercenários que tirou uma boa risada, porém você foi traído e abandonado em um masmorra como isca.</p>
+                    <p class="fundo-roxo">Devorado e com o corpo ensanguentado.</p>
+                    <p class="fundo-roxo">Você morreu em uma grande aventura.</p>
+                </div>
+                
+                <div class="passo" id="passo-28">
+                    <p class="fundo-roxo">O poder é o desejo de influenciar e controlar pessoas ou situações, de ter autoridade e reconhecimento.</p>
+                    <p class="fundo-roxo">Ter poder para ganhar tomada de decisões é ideal para quem quer títulos e fama, mas ser consumido por essa chama o tornaria uma besta.</p>
+                    <p class="fundo-roxo">Você achou uma orbe mágica entre as árvores tortas e retorcidas, por saciedade de curiosidade você tocou sem mais e sem menos. Após embarcar em uma masmorra sombria, a orbe que continha um grande poder consumia o que lhe restava de humanidade.</p>
+                    <p class="fundo-roxo">Grandes poderes, grandes responsabilidades.</p>
+                    <p class="fundo-roxo">Você foi consumido pelas chamas de ódio e se tornou uma besta da masmorra.</p>
+                    <p class="fundo-roxo">Você morreu.</p>
+                </div>
+                
+                <div class="passo" id="passo-29">
+                    <p class="fundo-roxo">A riqueza está associada à abundância material, à posse de bens e à segurança financeira.</p>
+                    <p class="fundo-roxo">Ter dinheiro é poder, dizia minha vó, porém ser soberbo traria mal olhado e muitos olheiros.</p>
+                    <p class="fundo-roxo">Você achou um tesouro no final da estrada perto de uma cachoeira, porém um grupo lhe seguia e você deu o que eles estavam procurando há muito tempo.</p>
+                    <p class="fundo-roxo">O grupo se juntou e quando estava distraído, eles te mataram a sangue frio.</p>
+                    <p class="fundo-roxo">Última visão que aparece diante seus olhos é a elegância e magnitude desse grande tesouro.</p>
+                </div>
+                
+                <div class="passo" id="passo-30">
+                    <p class="fundo-roxo">O conhecimento é a busca por entender o mundo, por aprender coisas novas e por expandir a própria mente.</p>
+                    <p class="fundo-roxo">Conhecer e aprender é o fator mais importante do ser vivo, mas grande conhecimento obtido repentinamente lhe trará arrogância e sobrecarga.</p>
+                    <p class="fundo-roxo">Você em descanso, levanta e uma lâmpada mágica em forma de bully aparece e com dopamina alta esfrega sem pensar, desejando ser o mais inteligente do mundo. Com o desejo realizado, o processamento mental aumentou em mil vezes e seu corpo não está pronto para receber todos esses conhecimentos.</p>
+                    <p class="fundo-roxo">Seu corpo esquentou rapidamente e seu cérebro não aguentou a sobrecarga.</p>
+                    <p class="fundo-roxo">Você teve uma morte cerebral.</p>
+                
+                </div>
+
+                 <div class="passo" id="passo-24">
+                <p class="fundo-roxo">Você decide investigar a cidade de Stonewall.</p>
+                <p class="fundo-roxo">As ruas estão cheias de vida, com comerciantes vendendo suas mercadorias e artistas de rua entretendo os passantes.</p>
+                <p class="fundo-roxo">Após um tempo de investigação, você chega à uma estalagem chamada Bafo do Dragão.</p>
+                <p class="fundo-roxo">O melhor lugar da região para se conseguir uma informação.</p>
+                <button class="btn-proximo" data-proximo="31">Continuar</button>
+                </div>
+                <div class="passo" id="passo-31">
+                    <p class="fundo-roxo">Você se senta em uma mesa mais próxima do balcão, por um tempo nada de relevante acontece.</p>
+                    <button class="btn-proximo" data-proximo="32">Esperar</button>
+                    <button class="btn-proximo" data-proximo="33">Ir embora</button>
+                    <button class="btn-proximo" data-proximo="34">Beber</button>
+                </div>
+           
+
+             <div class="passo" id="passo-25">
+                <p class="fundo-roxo">Você decide descansar, e a estalagem Bafo do Dragão é a melhor da cidade para isso.</p>
+                <p class="fundo-roxo">Após um banho relaxante e se alimentar, você se deita em uma cama aconchegante e apaga completamente.</p>
+                <p class="fundo-roxo">...</p>
+                <button class="btn-proximo" data-proximo="35">Continuar</button>
+             </div>
+           
+
+             <div class="passo" id="passo-35">
+                <p class="fundo-roxo">Seu sono estava tranquilo, mas ele é interrompido por um barulho e você está sonolento.</p>
+                <button class="btn-proximo" data-proximo="36">Se levantar</button>
+                <button class="btn-proximo" data-proximo="37">Voltar a dormir</button>
+                <button class="btn-proximo" data-proximo="38">Esperar</button>
+            </div>
+
+            <div class="passo" id="passo-32">
+                <p class="fundo-roxo">Você esperou e esperou, mas somente ouviu conversas impróprias e gritos irritantes de bêbados.<br>
+                    Não conseguiu nenhuma informação relevante.<br>
+                    Decepcionado, você parte da cidade à noite, completamente exausto e estressado.<br>
+                    Você anda cambaleando numa mata e o corpo continua mais pesado, indo em direção à estrada de Eldoria e saindo do matagal de Stonewall.<br>
+                    Um barulho vindo dos arbustos próximos.</p>
+                    <p class="fundo-roxo">Lembrando de sua classe inicial escolhida poderá afetar o seu futuro<br>
+                        A classe escolhida terá obtido os seguintes itens<br><br>
+                        <strong>Guerreiro</strong><br>
+                        Espada de Ferro (Arma)<br>
+                        Armadura de couro (proteção)<br><br>
+                        <strong>Mago</strong><br>
+                        Varinha de Carvalho (Arma)<br>
+                        Robe de Aprendiz (Cosmético)<br>
+                        Tomo mágico (Arma)<br><br>
+                        <strong>Clérigo</strong><br>
+                        Maça de correntes (Arma)<br>
+                        Escudo de Madeira (proteção)<br>
+                        Cota de Malhas (proteção)<br><br>
+                        <strong>Arqueiro</strong><br>
+                        Arco Curto (Arma)<br>
+                        Botas de Couro (Cosmético)<br>
+                        Robe com capuz (Cosmético)<br><br>
+                        (Lembrando que cada classe tem sua funcionalidade e itens exclusivos que outros não terão)</p>
+                        
+                <button class="btn-proximo" data-proximo="39">Se esconder</button>
+                <button class="btn-proximo" data-proximo="40">Preparar-se</button>
+                <button class="btn-proximo" data-proximo="41">Correr</button>
+            </div>
+            
+            <div class="passo" id="passo-33">
+                <p class="fundo-roxo">Você sai do estabelecimento e vê um grupo suspeito indo em direção ao beco à sua direita.</p>
+                <button class="btn-proximo" data-proximo="42">Seguir</button>
+                <button class="btn-proximo" data-proximo="43">Deixar quieto</button>
+            </div>
+            
+            <div class="passo" id="passo-34">
+                <p class="fundo-roxo">Você curtiu sozinho, mas você não tem autocontrole suficiente para parar.</p>
+                <p class="fundo-roxo">Você ficou bêbado e acordou no dia seguinte.</p>
+                <p class="fundo-roxo">Você acordou sem seus equipamentos, está largado em um beco sem roupas e está com uma tremenda dor de cabeça.</p>
+                <button class="btn-proximo" data-proximo="44">Ir embora de Stonewall</button>
+                <button class="btn-proximo" data-proximo="45">Ir em busca de ajuda</button>
+                <button class="btn-proximo" data-proximo="46">Pedir esmola</button>
+            </div>
+            <div class="passo" id="passo-21">
+                <p class="fundo-roxo">Com a missão aceita, você se equipa com os itens de sua classe escolhida e parte em direção à floresta. A densa vegetação e o som dos animais ao redor criam uma atmosfera tensa. Após algumas horas de caminhada, você chega a uma clareira onde encontra sinais de uma batalha recente: árvores derrubadas, marcas de queimaduras no solo e flechas espalhadas.</p>
+                <button class="btn-proximo" data-proximo="47">Investigar a área</button>
+                <button class="btn-proximo" data-proximo="48">Seguir as pegadas</button>
+                <button class="btn-proximo" data-proximo="49">Montar um acampamento</button>
+                <button class="btn-proximo" data-proximo="50">Enviar um sinal</button>
+            </div>
+            <div class="passo" id="passo-47">
+                <p class="fundo-roxo">Você caminha sorrateiramente entre a mata, encontrando pegadas e manchas de sangue. Olhando mais atentamente, você percebe corpos de humanos e animais dilacerados, como se garras tivessem sido cruelmente rápidas e ferozes.</p>
+                <p class="fundo-roxo">Enquanto olha o ambiente em volta, um grito vem das matas e seus passos vão de encontro com os seus. Um grito alto e abalador, é como se ele cortasse seus sentidos e estressasse agoniamente seu cérebro.</p>
+                <button class="btn-proximo" data-proximo="51">Esperar e contra-atacar</button>
+                <button class="btn-proximo" data-proximo="52">Atacar primeiro</button>
+                <button class="btn-proximo" data-proximo="53">Se camuflar</button>
+            </div>
+            <div class="passo" id="passo-48">
+                <p class="fundo-roxo">As pegadas são incomuns, levando direto a uma grande árvore feita de carvão. Uma grande mancha de sangue faz o ambiente cheirar estranho e o cheiro de corpos se decompondo é extremamente perceptível.</p>
+                <p class="fundo-roxo">Você caminha entre alguns corpos largados, imundando a cor viva da floresta. Uma cena aos seus olhos te leva a um arrepio na espinha. Humanos e anões com seus corpos pendurados em uma corda sem vida, olhos pretos e seu corpo coberto por um líquido preto como se fosse sangue.</p>
+                <p class="fundo-roxo">Uma criatura em fase de decomposição, caindo lentamente aos pedaços, mas seu tamanho a torna intimidadora entre suas presas. Uma quimera com estrutura de um urso, rabo de leão e sua cabeça de tubarão com inúmeras presas que fazem seu corpo inteiro ser uma arma.</p>
+                <p class="fundo-roxo">Ela caminha lentamente na sua direção e pula em sua direção como se fosse um lobo atrás de um cordeiro.</p>
+                <button class="btn-proximo" data-proximo="54">Defender</button>
+                <button class="btn-proximo" data-proximo="55">Esquivar</button>
+                <button class="btn-proximo" data-proximo="56">Contra-ataque</button>
+            </div>
+            <div class="passo" id="passo-49">
+                <p class="fundo-roxo">Você andou por muito tempo, um descanso será extremamente bem-vindo, mas em território hostil não deixa de ser uma ação ousada.</p>
+                <p class="fundo-roxo">O seu acampamento soltou levemente fumaças que mostravam sua posição e rapidamente você se depara com uma horda de mortos-vivos.</p>
+                <p class="fundo-roxo">Por mais que relute, sua quantidade dobra quanto mais você abate, surgindo de um lugar o qual você desconhece. Um morto-vivo gruda em sua perna e outros aproveitam a queda de sua guarda, atacando brutalmente.</p>
+                <p class="fundo-roxo">Você foi devorado vivo.</p>
+            </div>
+            <div class="passo" id="passo-50">
+                <p class="fundo-roxo">Você enviou um sinal, deixando rastros para ganhar apoio e facilitar a investigação de guardas ou caçadores.</p>
+                <p class="fundo-roxo">Porém, o perigo que habitava nessa floresta eram criaturas natas e sensíveis.</p>
+                <p class="fundo-roxo">Você caminha e é surpreendido com um puxão em suas pernas, uma criatura estranha atravessando sua mão entre a terra e puxando você, fazendo-o se desequilibrar.</p>
+                <p class="fundo-roxo">Eventualmente, tentando relutar, você está completamente agarrado e preso ao chão comendo terra, mas agora com dezenas de mãos o deixando imóvel.</p>
+                <p class="fundo-roxo">Uma criatura com a cabeça inclinada vindo da mata caminha em sua direção e com seus dentes podres morde diretamente seu pescoço.</p>
+                <p class="fundo-roxo">Você foi devorado vivo.</p>
+            </div>
+
+            <div class="passo" id="passo-51">
+                <p class="fundo-roxo">Esperando calmamente e esperando um movimento, uma criatura em fase de decomposição, caindo lentamente aos pedaços, mas seu tamanho a torna intimidadora entre suas presas. Uma quimera com estrutura de um urso, rabo de leão e sua cabeça de tubarão com inúmeras presas que fazem seu corpo inteiro ser uma arma.</p>
+                <p class="fundo-roxo">Sem chance de pensar, ela te ataca ferozmente, pulando com tudo em sua direção. A única coisa que lhe salva nesse momento são seus instintos.</p>
+                <p class="fundo-roxo"><strong>Mago:</strong> Você é inteligente e perspicaz, agir previamente é sua melhor arma. Porém, o ataque foi rápido demais do que o previsto. Enquanto a bola de fogo estava sendo conjurada, os dentes são fincados e você se vê dentro de camadas rosas sem sentir suas pernas. A dor é imensa e lentamente seus olhos obscurecem.<br>
+                     Você morreu.</p>
+                <p class="fundo-roxo"><strong>Arqueiro:</strong> Você é ágil, e sua pontaria na maioria das vezes não falha. Não adianta ter a melhor arma, se você não conseguir manuseá-la. Seus reflexos natos fazem você esquivar mais para a direita onde existem mais árvores, mas uma pedra pequena e um contato fez você se desequilibrar. Virando sua cabeça e olhando diretamente para a criatura, sua cabeça é partida em duas, jorrando uma quantidade tremenda de sangue que atrai mais criaturas.<br>
+                     Você morreu.</p>
+                <button class="btn-proximo" data-proximo="57">Continuar</button>
+            
+            </div>
+
+        </div>
+        <div class="passo" id="passo-57">
+            <p class="fundo-roxo"><strong>Guerreiro:</strong> Você tem bastante experiência em combate e seu rosto com cicatrizes é a prova disso. A criatura salta em sua direção e você aponta sua espada com medo, porém precisa. Essa criatura é horripilante para quaisquer olhos. Você agacha inclinando para a esquerda e realiza um corte horizontal, acertando no ponto vital da criatura. Ela cai de mal jeito e sangrando constantemente, mas ainda continua viva.</p>
+            <p class="fundo-roxo"><strong>Clérigo:</strong> Sempre confundido com um paladino, mas de fato você tem suas semelhanças. Com grande escudo e maça em suas mãos, você fixa seus pés e agacha levemente para aumentar seu peso. Você finta e redireciona a criatura com seu escudo que se quebra com grande impacto. A criatura no chão está aberta para ataques.</p>
+            <button class="btn-proximo" data-proximo="58">Atacar</button>
+            <button class="btn-proximo" data-proximo="59">Se camuflar e atacar</button>
+            <button class="btn-proximo" data-proximo="60">Esperar</button>
+        </div>
+
+        <div class="passo" id="passo-52">
+            <p class="fundo-roxo"><strong>Mago:</strong> Você não perde tempo, a melhor defesa é o ataque. Canalizando e usando o poder da natureza, você conjura uma grande bola de fogo e lança contra o que está por vir. Gritos ecoam e rapidamente a floresta começa a queimar e seu fogo se espalha sem um fim. A floresta começa a ter um tom mais acinzentado, e as criaturas que estavam por perto foram mortas com o impacto das chamas. Uma criatura sobressai das chamas, mas ela cai morta e seu corpo começa a evaporar com um odor escroto.</p>
+            <p class="fundo-roxo"><strong>Arqueiro:</strong> Você sempre aprendeu que errar é humano, que a merda aconteça e depois você resolve. Com o arco em mãos, sentindo o odor e barulhos de passos, você corre para a direita e, deslizando sobre a mata, dispara sobre uma criatura com escamas afiadas, atingindo diretamente seu ponto vital. A criatura grita e começa a correr em sua direção, porém ela tropeça e cai em sua frente, ficando completamente imóvel.</p>
+            <button class="btn-proximo" data-proximo="61">Continuar</button>
+        </div>
+
+        </main>
+    <script src="script.js"></script>
+</body>
+</html>
